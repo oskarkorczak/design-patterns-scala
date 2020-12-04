@@ -23,7 +23,7 @@ trait PrettyString[T] {
 #### Companion object
 Implementations for necessary types comes next:
 
-```
+``` java
 object PrettyString {
 
   implicit object StringPrettyString extends PrettyString[String] {
@@ -43,7 +43,7 @@ object PrettyString {
 #### Generic method with implicit
 Two ways of writing generic method allowing for implicit resolution based on passed type `T`:
 
-```
+``` java
 def prettyString[T](t: T)(implicit stringifier: PrettyString[T]): String = {
     stringifier.stringify(t)
 }
@@ -51,7 +51,7 @@ def prettyString[T](t: T)(implicit stringifier: PrettyString[T]): String = {
 
 In Scala Typeclass is used so often that there is a handy abbreviation called [Context Bound][context-bound-docs] allowing to shorten the syntax above to:  
 
-```
+``` java
 def prettyString[T: PrettyString](t: T): String = {
     implicitly[PrettyString[T]].stringify(t)
 }
