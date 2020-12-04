@@ -1,0 +1,34 @@
+# sbt
+bin/
+target/
+build/
+
+# intellij idea
+*.log
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# mac
+.DS_Store
+
+# metals
+.metals/
+metals.sbt
+
+# other
+.history
+.scala_dependencies
+.cache
+.cache-main
+
+.bloop/
+.dotty-ide*
+boot/
+lib_managed/
+project/plugins/project/
+src_managed/
+
+#general
+*.class
