@@ -14,7 +14,7 @@ There are three steps needed in order to define a Typeclass:
 #### Trait
 Action tells that any type `T` will be converted to String potentially with some additions: 
 
-```
+``` java
 trait PrettyString[T] {
   def stringify(t: T): String
 }
