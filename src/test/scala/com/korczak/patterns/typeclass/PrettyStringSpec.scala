@@ -27,6 +27,4 @@ final class PrettyStringSpec extends UnitSpec {
     prettyString[Int](deg) shouldEqual "(" + deg + ")"
     prettyStringNeat[Int](deg) shouldEqual "(" + deg + ")"
   }
-
-
 }
