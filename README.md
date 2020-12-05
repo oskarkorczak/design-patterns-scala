@@ -14,7 +14,7 @@ There are three steps needed in order to define a Typeclass:
 #### Trait
 Action tells that any type `T` will be converted to String potentially with some additions: 
 
-``` java
+``` scala
 trait PrettyString[T] {
   def stringify(t: T): String
 }
@@ -23,7 +23,7 @@ trait PrettyString[T] {
 #### Companion object
 Implementations for necessary types comes next:
 
-``` java
+``` scala
 object PrettyString {
 
   implicit object StringPrettyString extends PrettyString[String] {
@@ -43,7 +43,7 @@ object PrettyString {
 #### Generic method with implicit
 Two ways of writing generic method allowing for implicit resolution based on passed type `T`:
 
-``` java
+``` scala
 def prettyString[T](t: T)(implicit stringifier: PrettyString[T]): String = {
     stringifier.stringify(t)
 }
@@ -51,7 +51,7 @@ def prettyString[T](t: T)(implicit stringifier: PrettyString[T]): String = {
 
 In Scala Typeclass is used so often that there is a handy abbreviation called [Context Bound][context-bound-docs] allowing to shorten the syntax above to:  
 
-``` java
+``` scala
 def prettyString[T: PrettyString](t: T): String = {
     implicitly[PrettyString[T]].stringify(t)
 }
