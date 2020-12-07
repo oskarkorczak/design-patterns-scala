@@ -81,4 +81,22 @@ final class StringParserSpec extends UnitSpec {
 
     parse[Seq[Boolean]](seq) shouldEqual Seq(true, true, false, true, true, true, false)
   }
+
+  it should "parse Sequence of tuples of [Int, Boolean]" in {
+    val tuplesSeq = "1=true,2=false,3=true,4=false"
+
+    parse[Seq[(Int, Boolean)]](tuplesSeq) shouldEqual Seq((1, true), (2, false), (3, true), (4, false))
+  }
+
+  it should "parse Sequence of tuples of [Double, Boolean]" in {
+    val tuplesSeq = "1.0=true,2.0=false,3.4=true,4.5=false"
+
+    parse[Seq[(Double, Boolean)]](tuplesSeq) shouldEqual Seq((1.0, true), (2.0, false), (3.4, true), (4.5, false))
+  }
+
+  it should "parse Sequence of tuples of [Int, Double]" in {
+    val tuplesSeq = "1=1.5,2=2.5,3=3.5,4=4.5"
+
+    parse[Seq[(Int, Double)]](tuplesSeq) shouldEqual Seq((1, 1.5), (2, 2.5), (3, 3.5), (4, 4.5))
+  }
 }
