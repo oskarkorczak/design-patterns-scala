@@ -21,6 +21,14 @@ final class StringParserSpec extends UnitSpec {
     }
   }
 
+  implicit def ParseSequence[T](implicit parser: StringParser[T]) = {
+    new StringParser[Seq[T]] {
+      override def parse(s: String): Seq[T] = {
+        s.split(',').toSeq.map(parser.parse)
+      }
+    }
+  }
+
   behavior of "String parser"
 
   it should "parse Int" in {
@@ -60,5 +68,17 @@ final class StringParserSpec extends UnitSpec {
     val str = "240.5=false"
 
     parse[(Double, Boolean)](str) shouldEqual (240.5, false)
+  }
+
+  it should "parse Sequence of Ints" in {
+    val seq = "1,2,3,4,5,6,7,8"
+
+    parse[Seq[Int]](seq) shouldEqual Seq(1, 2, 3, 4, 5, 6, 7, 8)
+  }
+
+  it should "parse Sequence of Booleans" in {
+    val seq = "true,true,false,true,true,true,false"
+
+    parse[Seq[Boolean]](seq) shouldEqual Seq(true, true, false, true, true, true, false)
   }
 }
